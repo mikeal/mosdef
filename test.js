@@ -25,6 +25,11 @@ tape('test basics', t => {
   obj.test9 = 'test9 ok'
   t.equals(test8.test8, 'test8 ok')
   t.equals(test8.test9, 'test9 ok')
+
+  let obj2 = {}
+  mosdef([obj, obj2], 'test10', () => 'test10 ok')
+  t.equals(obj.test10, 'test10 ok')
+  t.equals(obj2.test10, 'test10 ok')
   t.end()
 })
 

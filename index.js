@@ -16,17 +16,27 @@ const mosdef = (obj, key, value) => {
       throw new TypeError('key does not match known type')
     }
   }
-  each(table, (key, value) => {
-    if (typeof value === 'function') {
-      Object.defineProperty(obj, key, {get: () => value(key, obj)})
-    } else if (typeof value === 'object') {
-      let _value = {}
-      if (value.get) _value.get = () => value.get(key, obj)
-      if (value.set) _value.set = v => value.set(v, key, obj)
-      Object.defineProperty(obj, key, _value)
-    } else {
-      throw new TypeError('value does not match known type')
-    }
+
+  let objects
+  if (Array.isArray(obj)) {
+    objects = obj
+  } else {
+    objects = [obj]
+  }
+
+  objects.forEach(obj => {
+    each(table, (key, value) => {
+      if (typeof value === 'function') {
+        Object.defineProperty(obj, key, {get: () => value(key, obj)})
+      } else if (typeof value === 'object') {
+        let _value = {}
+        if (value.get) _value.get = () => value.get(key, obj)
+        if (value.set) _value.set = v => value.set(v, key, obj)
+        Object.defineProperty(obj, key, _value)
+      } else {
+        throw new TypeError('value does not match known type')
+      }
+    })
   })
   return obj
 }
