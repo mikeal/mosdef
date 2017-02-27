@@ -1,4 +1,4 @@
-# mosdef -- Functional conveniences for property definitions. Edit
+# mosdef -- Functional conveniences for property definitions.
 
 Add property getters.
 
