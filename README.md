@@ -1,5 +1,7 @@
 # mosdef -- Functional conveniences for property definitions.
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mikeal/mosdef.svg)](https://greenkeeper.io/)
+
 Add property getters.
 
 ```javascript
